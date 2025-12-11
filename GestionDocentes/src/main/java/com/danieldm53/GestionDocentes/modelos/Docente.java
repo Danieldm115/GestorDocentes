@@ -6,23 +6,37 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "docentes")
+@Table(name = "docente")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
+@Getter @Setter
 public class Docente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_docente")
-    private int id;
+    private Long id;
 
+    @Column(nullable = false)
     private String nombre;
-    private String apellido;
+
+    @Column(nullable = false)
+    private String apellidos;
+
+    @Column(unique = true, nullable = false)
     private String email;
+
+    /* REVISAR */
     private String siglas;
 
+    @ManyToOne
+    @JoinColumn(name = "departamento_id", nullable = false)
+    private Departamento departamento;
+
+    @OneToOne (mappedBy = "docente", cascade = CascadeType.ALL)
+    private Rol rol;
+
+
     @OneToMany (mappedBy = "docente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AsuntoPropio> asuntos_propios;
+    @ToString.Exclude
+    private List<AsuntoPropio> asuntoPropios;
 }

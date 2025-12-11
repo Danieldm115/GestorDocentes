@@ -2,15 +2,15 @@ package com.danieldm53.GestionDocentes.servicios;
 
 import com.danieldm53.GestionDocentes.modelos.AsuntoPropio;
 import com.danieldm53.GestionDocentes.repositorios.AsuntoPropioRepositorio;
-import com.danieldm53.GestionDocentes.repositorios.DocentesRepositorio;
+import com.danieldm53.GestionDocentes.repositorios.DocenteRepositorio;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AsuntoPropioServicio {
     AsuntoPropioRepositorio reporiositorio;
-    DocentesRepositorio docentesRepositorio;
+    DocenteRepositorio docentesRepositorio;
 
-    public AsuntoPropioServicio(AsuntoPropioRepositorio reporiositorio, DocentesRepositorio docentesRepositorio){
+    public AsuntoPropioServicio(AsuntoPropioRepositorio reporiositorio, DocenteRepositorio docentesRepositorio){
         this.reporiositorio = reporiositorio;
         this.docentesRepositorio = docentesRepositorio;
     }

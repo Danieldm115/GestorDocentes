@@ -1,4 +1,4 @@
-INSERT INTO departamento (nombre, codigo, telefono) VALUES
+INSERT INTO departamento (nombre, codigo, telefono) VALUES -- Personaliza el orden de los campos a tu tabla
 ('Informática y Comunicaciones', 'IFC', '984100101'),
 ('Electricidad y Electrónica', 'ELE', '984100102'),
 ('Fabricación Mecánica', 'FME', '984100103'),
@@ -9,6 +9,7 @@ INSERT INTO departamento (nombre, codigo, telefono) VALUES
 ('Edificación y Obra Civil', 'EOC', '984100113');
 
 INSERT INTO docente (nombre, apellidos, email, siglas, departamento_id) VALUES
+
 -- IFC – Informática y Comunicaciones. Departamento 1
 ('Sergio', 'Martínez López', 'sergioml@educastur.org', 'MLSe', 1),
 ('Laura', 'González Pérez', 'lauragp@educastur.org', 'GPLa', 1),
@@ -31,9 +32,26 @@ INSERT INTO docente (nombre, apellidos, email, siglas, departamento_id) VALUES
 ('Noelia', 'Lago Souto', 'noelials@educastur.org', 'LSNo', 5),
 
 -- ADG – Administración y Gestión. Departamento 6
-('Beatriz', 'Sánchez Rojo', 'beatrizsr@educastur.org', 'SRBe', 6),
+('Beatriz', 'Sánchez Rojo', 'beatrizsr@educastur.org', 'SRBe', 9),
 
 -- COM – Comercio y Marketing. Departamento 7
-('Raquel', 'Vega Soto', 'raquelvs@educastur.org', 'SVRa', 7),
-('Alberto', 'Lorenzo Díaz', 'albertold@educastur.org', 'LDAl', 7),
-('Marta', 'Rey Castro', 'martarc@educastur.org', 'CRMa', 7);
+('Raquel', 'Vega Soto', 'raquelvs@educastur.org', 'SVRa', 10),
+('Alberto', 'Lorenzo Díaz', 'albertold@educastur.org', 'LDAl', 10),
+('Marta', 'Rey Castro', 'martarc@educastur.org', 'CRMa', 10);
+
+
+INSERT INTO rol (nombre, orden, docente_id) VALUES -- orden = años en el centro
+('Funcionario',5,1),
+('Interino',15,2),
+('Funcionario',0,3),
+('Prácticas',0,4),
+('Interino',5,5),
+('Funcionario',1,6),
+('Funcionario',6,7),
+('Interino',10,8),
+('Funcionario',2,9),
+('Funcionario',10,10),
+('Interino',5,11),
+('Funcionario',8,12),
+('Funcionario',3,14),
+('Funcionario',12,15);

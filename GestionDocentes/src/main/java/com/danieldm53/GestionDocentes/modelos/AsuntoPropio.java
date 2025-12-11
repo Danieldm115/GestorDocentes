@@ -4,29 +4,38 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "asuntos_propios")
+@Table(name = "asunto_propio")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
+@Getter  @Setter
 public class AsuntoPropio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_asunto_propio")
-    private int id;
+    private Long id;
 
-    private Date diaSolicitado;
+
+    @Column(name = "dia_solicitado", nullable = false)
+    private LocalDate diaSolicitado;
+
     private String descripcion;
-    private Date fechaTramitacion;
-    private boolean aprobado;
 
-    @JsonIgnore
+    @Column(name = "fecha_tramitacion")
+    private LocalDateTime fechaTramitacion;
+
+    /*
+     * null = Pendiente (Estado inicial)
+     * true = Aprobado
+     * false = Rechazado
+     */
+    private Boolean aprobado;
+
     @ManyToOne
-    @JoinColumn(name = "id_docente", nullable = false)
+    @JoinColumn(name = "docente_id", nullable = false)
+    @JsonIgnore
     private Docente docente;
-
 }

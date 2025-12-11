@@ -4,20 +4,28 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "asignaturas")
+@Table(name = "asignatura")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
+@Getter  @Setter
 public class Asignatura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_asignatura")
-    private int id;
+    private Long id;
 
+    @Column(nullable = false)
     private String nombre;
-    private String codigo;
-    private int horasSemanales;
+
+    @Column(nullable = false)
+    private String siglas;
+
+    @Column(nullable = false)
+    private int curso;
+
+    @ManyToOne
+    @JoinColumn(name = "ciclo_id", nullable = false)
+    private Ciclo ciclo;
 
 }
