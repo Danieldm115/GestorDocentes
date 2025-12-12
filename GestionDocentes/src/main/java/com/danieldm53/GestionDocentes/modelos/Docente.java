@@ -28,6 +28,9 @@ public class Docente {
     /* REVISAR */
     private String siglas;
 
+    @Column(name = "guardias_realizadas")
+    private int guardiasRealizadas = 0;
+
     @ManyToOne
     @JoinColumn(name = "departamento_id", nullable = false)
     private Departamento departamento;
