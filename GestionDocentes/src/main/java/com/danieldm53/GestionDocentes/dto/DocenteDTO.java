@@ -1,27 +1,19 @@
 package com.danieldm53.GestionDocentes.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
 public class DocenteDTO {
-    private int idDTO;
-    private String nombreDTO;
-    private String apellidosDTO;
-    private String emailDTO;
-    private String siglasDTO;
-    private String tipoDTO;
-    private String antiguedadDTO;
-    private int idAsuntoPropioDTO;
-    private int idDepartamentoDTO;
-    private int idRolDTO;
-    private int idHorarioDTO;
-    private int idFaltaDTO;
-
+    private Long id;
+    private String nombre;
+    private String apellidos;
+    private String email;
+    private String siglas;
+    private Long departamentoId;
+    private String departamentoNombre;
+    private String rolNombre;
+    private Integer antiguedad;
+    private int guardiasRealizadas;
 }
