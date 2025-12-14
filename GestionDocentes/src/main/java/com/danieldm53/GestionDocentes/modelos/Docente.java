@@ -3,6 +3,8 @@ package com.danieldm53.GestionDocentes.modelos;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "docente")
@@ -26,4 +28,10 @@ public class Docente {
     @ManyToOne
     @JoinColumn(name = "departamento_id", nullable = false)
     private Departamento departamento;
+
+    @OneToMany(mappedBy = "docente", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Rol> roles;
+
+    @OneToMany(mappedBy = "docente", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<AsuntoPropio> asuntosPropios;
 }
