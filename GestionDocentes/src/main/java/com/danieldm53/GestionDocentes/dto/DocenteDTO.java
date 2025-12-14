@@ -1,37 +1,27 @@
-/*
- * Uso este DTO para filtrar los datos que mando a la web.
- * Principalmente para evitar el error de bucle infinito (StackOverflow)
- * que generan las relaciones bidireccionales y para no enviar datos innecesarios.
- */
 package com.danieldm53.GestionDocentes.dto;
 
-import com.danieldm53.GestionDocentes.modelos.Docente;
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
-@Builder
+@AllArgsConstructor
+@Getter
+@Setter
+
 public class DocenteDTO {
-    private Long id;
-    private String nombre;
-    private String apellidos;
-    private String email;
-    private String siglas;
-    private String nombreDepartamento;
+    private int idDTO;
+    private String nombreDTO;
+    private String apellidosDTO;
+    private String emailDTO;
+    private String siglasDTO;
+    private String tipoDTO;
+    private String antiguedadDTO;
+    private int idAsuntoPropioDTO;
+    private int idDepartamentoDTO;
+    private int idRolDTO;
+    private int idHorarioDTO;
+    private int idFaltaDTO;
 
-    public static DocenteDTO fromEntity(Docente docente) {
-        if (docente == null) {
-            return null;
-        }
-
-        return DocenteDTO.builder()
-                .nombre(docente.getNombre())
-
-                .nombreDepartamento(
-                        docente.getDepartamento().getNombre()
-                )
-                .build();
-    }
 }

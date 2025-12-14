@@ -1,7 +1,10 @@
 package com.danieldm53.GestionDocentes.modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "departamento")
@@ -10,7 +13,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class Departamento {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,8 +23,9 @@ public class Departamento {
     @Column(unique = true, nullable = false)
     private String codigo;
 
-    /* Puede estar vacio porque puede no tener aun el departamento instalada
-    * la linea telefonica y aun así ser creado ni unico porque mas de un
-    * departamento puede tener el mismo número*/
     private String telefono;
+
+    @OneToMany(mappedBy = "departamento")
+    @JsonIgnore
+    private List<Docente> docentes;
 }

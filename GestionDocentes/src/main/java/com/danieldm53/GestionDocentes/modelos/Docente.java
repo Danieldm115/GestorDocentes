@@ -25,7 +25,6 @@ public class Docente {
     @Column(unique = true, nullable = false)
     private String email;
 
-    /* REVISAR */
     private String siglas;
 
     @Column(name = "guardias_realizadas")

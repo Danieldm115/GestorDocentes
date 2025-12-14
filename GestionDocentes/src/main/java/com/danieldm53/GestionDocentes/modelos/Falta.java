@@ -20,14 +20,16 @@ public class Falta {
 
     private String anotacion;
 
-    @Column(nullable = false)
-    private String materia;
+    private String material;
+
+    @Column(name = "realizada")
+    private Boolean realizada;
 
     @ManyToOne
     @JoinColumn(name = "horario_id", nullable = false)
     private Horario horario;
 
     @ManyToOne
-    @JoinColumn(name = "docente_id", nullable = false)
-    private Docente docente;
+    @JoinColumn(name = "docente_cubre_id")
+    private Docente docenteCubre;
 }

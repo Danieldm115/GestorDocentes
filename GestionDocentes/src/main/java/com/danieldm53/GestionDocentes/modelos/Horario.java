@@ -31,5 +31,4 @@ public class Horario {
     @OneToMany(mappedBy = "horario", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<Falta> faltas;
-
 }

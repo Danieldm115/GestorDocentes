@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface DocenteRepositorio extends JpaRepository<Docente, Long>{
+public interface DocenteRepository extends JpaRepository<Docente, Long>{
     /* Buscar por email para el login */
     Optional<Docente> findByEmail(String email);
 
