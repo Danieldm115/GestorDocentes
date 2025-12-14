@@ -2,7 +2,6 @@ package com.danieldm53.GestionDocentes.modelos;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Entity
