@@ -1,40 +1,37 @@
 package com.danieldm53.GestionDocentes.modelos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 @Table(name = "asunto_propio")
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Getter  @Setter
 public class AsuntoPropio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(name = "dia_solicitado", nullable = false)
+    @Column(nullable = false)
     private LocalDate diaSolicitado;
 
     private String descripcion;
 
-    @Column(name = "fecha_tramitacion")
-    private LocalDateTime fechaTramitacion;
-
-    /*
-     * null = Pendiente (Estado inicial)
-     * true = Aprobado
-     * false = Rechazado
-     */
     private Boolean aprobado;
+
+    private LocalDateTime fechaTramitacion;
 
     @ManyToOne
     @JoinColumn(name = "docente_id", nullable = false)
-    @JsonIgnore
     private Docente docente;
+
+    @PrePersist
+    public void prePersist() {
+        this.fechaTramitacion = LocalDateTime.now();
+        if (this.aprobado == null) {
+            this.aprobado = false; // Por defecto no aprobado
+        }
+    }
 }
