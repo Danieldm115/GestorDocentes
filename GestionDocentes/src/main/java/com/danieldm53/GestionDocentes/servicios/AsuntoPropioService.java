@@ -1,51 +1,38 @@
 package com.danieldm53.GestionDocentes.servicios;
 
-import com.danieldm53.GestionDocentes.dto.SolicitudAsuntoPropioDTO;
 import com.danieldm53.GestionDocentes.modelos.AsuntoPropio;
-import com.danieldm53.GestionDocentes.modelos.Docente;
 import com.danieldm53.GestionDocentes.repositorios.AsuntoPropioRepository;
-import com.danieldm53.GestionDocentes.repositorios.DocenteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class AsuntoPropioService {
-    private final AsuntoPropioRepository asuntoRepo;
-    private final DocenteRepository docenteRepo;
 
-    public void solicitarDia(SolicitudAsuntoPropioDTO solicitudDTO) {
-        Docente docente = docenteRepo.findById(solicitudDTO.getDocenteId())
-                .orElseThrow(() -> new RuntimeException("Docente no encontrado"));
+    private final AsuntoPropioRepository asuntoPropioRepository;
 
-        if (solicitudDTO.getFechaSolicitada().isBefore(java.time.LocalDate.now())) {
-            throw new RuntimeException("No puedes pedir días en el pasado");
+    public List<AsuntoPropio> findAll() {
+        return asuntoPropioRepository.findAll();
+    }
+
+    public AsuntoPropio findById(Long id) {
+        return asuntoPropioRepository.findById(id).orElse(null);
+    }
+
+    public AsuntoPropio save(AsuntoPropio asuntoPropio) {
+        return asuntoPropioRepository.save(asuntoPropio);
+    }
+
+    public AsuntoPropio update(Long id, AsuntoPropio asuntoPropio) {
+        if (asuntoPropioRepository.existsById(id)) {
+            asuntoPropio.setId(id);
+            return asuntoPropioRepository.save(asuntoPropio);
         }
-
-        AsuntoPropio asunto = AsuntoPropio.builder()
-                .docente(docente)
-                .diaSolicitado(solicitudDTO.getFechaSolicitada())
-                .descripcion(solicitudDTO.getDescripcion())
-                .fechaTramitacion(LocalDateTime.now())
-                .aprobado(null)
-                .build();
-
-        asuntoRepo.save(asunto);
+        return null;
     }
 
-    @Transactional
-    public void validarDia(Long asuntoId, boolean aceptado) {
-        AsuntoPropio asunto = asuntoRepo.findById(asuntoId)
-                .orElseThrow(() -> new RuntimeException("Solicitud no encontrada"));
-
-        asunto.setAprobado(aceptado);
-        asuntoRepo.save(asunto);
-    }
-
-    public List<AsuntoPropio> listarPendientes() {
-        return asuntoRepo.findByAprobadoIsNull();
+    public void deleteById(Long id) {
+        asuntoPropioRepository.deleteById(id);
     }
 }

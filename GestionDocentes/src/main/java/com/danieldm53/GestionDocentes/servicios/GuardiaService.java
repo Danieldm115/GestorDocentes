@@ -47,9 +47,7 @@ public class GuardiaService {
 
         if (elegido != null) {
             falta.setDocenteCubre(elegido);
-
             elegido.setGuardiasRealizadas(elegido.getGuardiasRealizadas() + 1);
-
             faltaRepo.save(falta);
             docenteRepo.save(elegido);
             return "Guardia asignada a: " + elegido.getNombre() + " " + elegido.getApellidos();
